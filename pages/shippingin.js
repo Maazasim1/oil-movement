@@ -8,16 +8,16 @@ export default function Shippingin() {
             <Sidebar />
             <Navbar />
             <div className="pl-[20%] pt-[100px] w-full">
-                <form className="w-full max-w-[90%]">
-                    <div className="flex flex-wrap -mx-3 mb-10 formContainer">
+                <htmlForm className="w-full max-w-[90%]">
+                    <div className="flex flex-wrap -mx-3 mb-10 htmlFormContainer">
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-T/L-no">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-T/L-no">
                                 T/L No.
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-T/L no" type="text" placeholder="ABC123" />
                         </div>
                         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-Products">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-Products">
                                 Products
                             </label>
                             <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Products">
@@ -25,49 +25,49 @@ export default function Shippingin() {
                             </select>
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="Token">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Token">
                                 Token
 
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="Token" type="text" />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="Quantity">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Quantity">
                                 Quantity
 
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="Quantity" type="text" />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="customer">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="customer">
                                 Customer
 
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer" type="text" />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="Transfer-Type">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Transfer-Type">
                                 Transfer Type
 
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="Transfer-Type" type="text" />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="date-in">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="date-in">
                                 Date In
 
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="date-in" type="date" />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="time-in">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="time-in">
                                 Time In
 
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="time-in" type="time" />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="tare-weight">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="tare-weight">
                                 Tare Weight(KG)
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="time-in" type="number" />
@@ -75,7 +75,7 @@ export default function Shippingin() {
                     </div>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="remarks">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="remarks">
                                 Remarks
                             </label>
                             <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="remarks" type="textarea" />
@@ -83,7 +83,7 @@ export default function Shippingin() {
                         </div>
                     </div>
 
-                </form>
+                </htmlForm>
             </div>
             <div className='pl-[20%] pr-[5%]'>
                 <hr className='border-none h-[1px] text-slate-700 bg-slate-700' />
