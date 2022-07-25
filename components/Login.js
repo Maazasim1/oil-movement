@@ -1,21 +1,22 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 export default function Login() {
     return (
         <div className='flex justify-center pt-10 rounded-lg align-middle h-screen items-center bg-slate-900'>
-          
-          
-          <div className='order-1 pt-1.5'>
-            <Image
-                className='rounded-r-xl '
-                src="/images/PetrolBlue.png"
-                width={500}
-                height={571}
-                objectFit="cover"
-            />
-          </div>
+
+
+            <div className='order-1 pt-1.5'>
+                <Image
+                    className='rounded-r-xl '
+                    src="/images/PetrolBlue.png"
+                    width={500}
+                    height={571}
+                    objectFit="cover"
+                />
+            </div>
 
 
             <div>
@@ -50,7 +51,9 @@ export default function Login() {
 
 
                     </div>
-                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
+                    <Link href='/shippingin'>
+                        <a type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</a>
+                    </Link>
                 </form>
             </div>
         </div>
