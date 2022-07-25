@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function () {
+export default function Sidebar () {
     return (
         <div className=' h-full w-[15%] fixed z-20 top-0 left-0 bg-slate-800 overflow-x-hidden pt-[20px]'>
             <div className='block w-full text-center divide-y-1 pb-10'>

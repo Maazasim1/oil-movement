@@ -15,6 +15,7 @@ export default function Login() {
                     width={500}
                     height={571}
                     objectFit="cover"
+                    Logo="blue car being filled"
                 />
             </div>
 
@@ -26,6 +27,7 @@ export default function Login() {
                             src="/images/Cnergyico_Logo.png"
                             width={190}
                             height={100}
+                            alt="Logo"
                         />
 
                     </div>
