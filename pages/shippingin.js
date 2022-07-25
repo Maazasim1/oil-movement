@@ -8,8 +8,8 @@ export default function Shippingin() {
             <Sidebar />
             <Navbar />
             <div className="pl-[20%] pt-[100px] w-full">
-                <htmlForm className="w-full max-w-[90%]">
-                    <div className="flex flex-wrap -mx-3 mb-10 htmlFormContainer">
+                <form className="w-full max-w-[90%]">
+                    <div className="flex flex-wrap -mx-3 mb-10 formContainer">
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-T/L-no">
                                 T/L No.
@@ -83,7 +83,7 @@ export default function Shippingin() {
                         </div>
                     </div>
 
-                </htmlForm>
+                </form>
             </div>
             <div className='pl-[20%] pr-[5%]'>
                 <hr className='border-none h-[1px] text-slate-700 bg-slate-700' />
