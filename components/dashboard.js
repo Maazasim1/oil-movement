@@ -8,7 +8,7 @@ import PieChart from './Cards/PieChart'
 export default function Dashboard() {
     return (
         <div className='bg-slate-900 h-full'>
-            <Sidebar level="Admin" />
+            <Sidebar level="Admin" shift="No shift required" />
             <Navbar />
             <div className='grid grid-flow-row-dense grid-cols-2 grid-row-2 gap-10    ml-[20vw] mt-[40px] mr-[40px] AdminPane'>
                 <CardBarChart />

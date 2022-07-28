@@ -31,7 +31,7 @@ export default function CardBarChart() {
       },
       title: {
         display: true,
-        text: 'Chart.js Bar Chart',
+        text: '',
       },
     },
   };
@@ -42,12 +42,12 @@ export default function CardBarChart() {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'FO',
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
-        label: 'Dataset 2',
+        label: 'HBO',
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
@@ -64,7 +64,7 @@ export default function CardBarChart() {
                 Performance
               </h6>
               <h2 className="text-white text-xl font-semibold">
-                Total orders
+                Total Oil
               </h2>
             </div>
           </div>

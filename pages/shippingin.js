@@ -20,7 +20,7 @@ export default function Shippingin() {
 
     return (
         <div>
-            <Sidebar />
+            <Sidebar level="Shipping In" shift="SHIFT: A" />
             <Navbar />
             <div className="pl-[20%] pt-[100px] w-full">
                 <form className="w-full max-w-[90%]">

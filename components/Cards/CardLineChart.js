@@ -43,13 +43,13 @@ export default function CardLineChart() {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'FO',
         data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
-        label: 'Dataset 2',
+        label: 'Petrol',
         data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -65,7 +65,7 @@ export default function CardLineChart() {
               <h6 className="uppercase text-white mb-1 text-xs font-semibold">
                 Overview
               </h6>
-              <h2 className="text-white text-xl font-semibold">Sales value</h2>
+              <h2 className="text-white text-xl font-semibold">Total Oil Moved</h2>
             </div>
           </div>
         </div>
