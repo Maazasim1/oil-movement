@@ -1,8 +1,15 @@
 import React from 'react'
+import { useSession } from 'next-auth/react'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 export default function Shippingin() {
+
+    const {data:session} = useSession();
+    console.log("session",session);
+    
+
+
     return (
         <div>
             <Sidebar />
