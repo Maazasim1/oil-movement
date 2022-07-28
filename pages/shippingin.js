@@ -1,12 +1,20 @@
 import React from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, getSession } from "next-auth/react"
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 export default function Shippingin() {
-
-    const {data:session} = useSession();
+    const { data: session, status } = useSession()
     console.log("session",session);
+
+    if (status === "loading") {
+        return <p>Loading...</p>
+      }
+    
+      if (status === "unauthenticated") {
+        return <p>Access Denied</p>
+      }
+    
     
 
 

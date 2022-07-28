@@ -34,9 +34,13 @@ export default function Login() {
               level: enteredAccess,
             });
       
-            if (!result.error) {
+            if (!result.error && enteredAccess==='Shipping In') {
               // set some auth state
               router.replace('/shippingin');
+            }
+            if (!result.error && enteredAccess==='Admin') {
+              // set some auth state
+              router.replace('/Admin');
             }
           }
         else{

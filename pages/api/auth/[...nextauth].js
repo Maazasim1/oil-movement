@@ -18,7 +18,15 @@ export default NextAuth({
                         name:"maaz",
                     
                     };
+                
+                }
+                if(credentials.username==="admin"&&credentials.password==="testing"&&credentials.level==="Admin") {
+                    return{
+                        id:3,
+                        name:"Admin",
                     
+                    };
+                
                 }
                 //login failed
                 return null;
