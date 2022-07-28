@@ -16,10 +16,11 @@ export default function Shippingin() {
       }
     
     
-
-
-    return (
-        <div>
+      if(status==="authenticated" && session.user.name==="maaz"){
+        
+          
+          return (
+              <div>
             <Sidebar level="Shipping In" shift="SHIFT: A" />
             <Navbar />
             <div className="pl-[20%] pt-[100px] w-full">
@@ -379,4 +380,5 @@ export default function Shippingin() {
 
         </div>
     )
+}
 }

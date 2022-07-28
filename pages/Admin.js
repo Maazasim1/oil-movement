@@ -14,9 +14,12 @@ export default function Admin() {
         if (status === "unauthenticated") {
           return <p>Access Denied</p>
         }
-  return (
-    <div>
-        <Dashboard />
-    </div>
-  )
+        if(status==="authenticated" && session.user.name==="admin"){
+
+          return (
+            <div>
+                <Dashboard />
+            </div>
+          )
+        }
 }
