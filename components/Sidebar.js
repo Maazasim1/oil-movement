@@ -31,7 +31,7 @@ export default function Sidebar (props) {
             {props.html}
            
            
-           <button onClick={()=>{signOut(); router.push("/api/auth/signin")}} className='text-white bg-slate-900 absolute bottom-0 inline-block rounded-0 p-4 w-full text-center '><img src='/images/logout.svg' className='h-5 w-5 inline-block align-middle mb-1 mr-5' /><span>Logout</span></button>
+           <button onClick={()=>{signOut(urlCallback:"/");}} className='text-white bg-slate-900 absolute bottom-0 inline-block rounded-0 p-4 w-full text-center '><img src='/images/logout.svg' className='h-5 w-5 inline-block align-middle mb-1 mr-5' /><span>Logout</span></button>
             
           
 
