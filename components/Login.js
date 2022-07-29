@@ -42,6 +42,9 @@ export default function Login() {
               // set some auth state
               router.replace('/Admin');
             }
+            if(result.error){
+                alert("Worng Credential");
+            }
           }
         else{
             alert("wrong credentials")
