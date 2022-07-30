@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 body{
-  @apply bg-gray-300;
-  @apply font-mono
+  @apply bg-backWhite;
+  @apply font-sans;
+  @apply font-semibold;
 }
 
 #navbar a{
-  color: white;
-  padding: 10px;
+  @apply text-white;
+  padding: 25px;
 
 }
 

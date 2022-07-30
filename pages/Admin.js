@@ -1,6 +1,7 @@
 import React from 'react'
 import Dashboard from '../components/dashboard'
 import { useSession, getSession } from "next-auth/react"
+import ReportStructure from '../components/Report/ReportStructure'
 
 
 export default function Admin() {

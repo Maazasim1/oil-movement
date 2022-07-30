@@ -44,12 +44,12 @@ export default function CardBarChart() {
       {
         label: 'FO',
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: '#FF5E37',
       },
       {
         label: 'HBO',
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        backgroundColor: '#572C75',
       },
     ],
   };
@@ -60,10 +60,10 @@ export default function CardBarChart() {
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h6 className="uppercase text-white mb-1 text-xs font-semibold">
+              <h6 className="uppercase text-headBlue mb-1 text-xs font-semibold">
                 Performance
               </h6>
-              <h2 className="text-white text-xl font-semibold">
+              <h2 className="text-headBlue text-xl font-semibold">
                 Total Oil
               </h2>
             </div>

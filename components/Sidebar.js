@@ -11,27 +11,35 @@ export default function Sidebar (props) {
     const router=useRouter();
     console.log("session",session);
     return (
-        <div className=' h-full w-[15%] fixed z-20 top-0 left-0 bg-slate-800 overflow-x-hidden pt-[20px]'>
+        <div className='h-[85%] w-[13%] fixed z-20 top-0 left-0 bg-white rounded-xl overflow-x-hidden ml-5 mt-[100px] mb-[50px]'>
             <div className='block w-full text-center divide-y-1 pb-10'>
-            <Image
-                src='/images/CnergyicoLogo.png'
-                height={50}
-                width={100}
-                alt='Company Logo'
-            />
+         
             
 
             </div>
             <Link href='/'>
-            <a className='text-white  block p-5 text-center bg-slate-900 m-5 rounded-full hover:text-slate-400'>{props.level}</a>
+            <a className='text-white  block p-4 text-center  m-4 bg-Orange hover:text-slate-400 rounded-xl'>{props.level}</a>
+            </Link>
+            
+            <Link href='/'>
+            <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{display:props.hidden}}>{props.shift}</a>
             </Link>
             <Link href='/'>
-            <a className='text-white  block p-5 text-center bg-slate-900 m-5 rounded-full hover:text-slate-400'>{props.shift}</a>
+            <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{display:props.hidden}}>BlackList</a>
             </Link>
-            {props.html}
+            <Link href='/'>
+            <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{display:props.hidden}}>Add User</a>
+            </Link>
+            <Link href='/'>
+            <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{display:props.hidden}}>Generate Report</a>
+            </Link>
+            <Link href='/'>
+            <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{display:props.hidden}}>Change Passwords</a>
+            </Link>
+         
+          
            
-           
-           <button onClick={()=>{signOut({callbackUrl:'/'})}} className='text-white bg-slate-900 absolute bottom-0 inline-block rounded-0 p-4 w-full text-center '><img src='/images/logout.svg' className='h-5 w-5 inline-block align-middle mb-1 mr-5' /><span>Logout</span></button>
+           <button onClick={()=>{signOut({callbackUrl:'/'})}} className='text-buttonWhite absolute bottom-3 inline-block rounded-0 p-4 w-full text-center '><img src='/images/logout.svg' className='h-5 w-5 inline-block align-middle mb-1 mr-5 text-buttonWhite' /><span>Logout</span></button>
             
           
 

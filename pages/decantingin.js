@@ -1,27 +1,12 @@
 import React from 'react'
-import { useSession, getSession } from "next-auth/react"
-import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
-export default function Shippingin() {
-    const { data: session, status } = useSession()
-    console.log("session",session);
 
-    if (status === "loading") {
-        return <p>Loading...</p>
-      }
-    
-      if (status === "unauthenticated") {
-        return <p>Access Denied</p>
-      }
-    
-    
-      if(status==="authenticated" && session.user.name==="maaz"){
-        
-          
-          return (
-              <div>
-            <Sidebar level="Shipping In" shift="SHIFT: A" />
+export default function Decantingin() {
+  return (
+    <div>
+            <Sidebar level="Decanting In" shift="SHIFT: A" />
             <Navbar />
             <div className="pl-[20%] pt-[70px] w-full pb-20">
                 <div className='bg-white pl-20 shadow-sm rounded-xl mr-[60px] pt-20 pb-20'>
@@ -328,9 +313,6 @@ export default function Shippingin() {
             </div>
             <Footer />
 
-
-
-        </div>
-    )
-}
+    </div>
+  )
 }

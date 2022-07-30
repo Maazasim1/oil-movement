@@ -54,7 +54,7 @@ export default function Login() {
 
   
     return (
-        <div className='flex justify-center pt-10 rounded-lg align-middle h-screen items-center bg-slate-900'>
+        <div className='flex justify-center pt-10 rounded-lg align-middle h-screen items-center '>
 
 
             <div className='order-1 pt-1.5'>
@@ -70,7 +70,7 @@ export default function Login() {
 
 
             <div>
-                <form className='bg-slate-200 rounded-l-xl  p-10 px-20' onSubmit={submitHandler}>
+                <form className='bg-white rounded-l-xl  p-10 px-20' onSubmit={submitHandler}>
                     <div className='mp-6 pb-10'>
                         <Image
                             src="/images/Cnergyico_Logo.png"
@@ -88,6 +88,7 @@ export default function Login() {
                             <option>Decanting In</option>
                             <option>Decanting Out</option>
                             <option>Admin</option>
+                            <option>Shift In-charge (SIC)</option>
                         </select>
                     </div>
                     <div className="mb-6">
