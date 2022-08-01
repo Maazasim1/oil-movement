@@ -2,7 +2,9 @@ import React from 'react'
 
 export default function ReportStructure() {
   return (
-    <div className='bg-white h-screen p-20 text-headBlue ml-[300px] mr-10 rounded-lg'>
+    <div className='ml-[35vw]'>
+
+    <div className='p-20 bg-white h-[297mm] w-[210mm] text-headBlu rounded-lg' id='reportComponent'>
         <h1 className='flex justify-center pt-10'>CRUDE RECEIPT & PRODUCT SHIPMENT REPORT</h1>
         <h4 className='flex justify-center p-5'>DATE</h4>
         <h5 className='p-5'>Current Date</h5>
@@ -380,6 +382,7 @@ export default function ReportStructure() {
             </tbody>
         </table>
         </div>
+    </div>
     </div>
   )
 }

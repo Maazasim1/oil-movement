@@ -54,19 +54,20 @@ export default function Login() {
 
   
     return (
-        <div className='flex justify-center pt-10 rounded-lg align-middle h-screen items-center '>
+        <div className='flex justify-center pt-10 align-middle h-screen items-center bg-Orange'>
 
-
-            <div className='order-1 pt-1.5'>
+        <div className='order-1'>
+            <div className='bg-loginPeach pl-10 pr-10'>
                 <Image
                     className='rounded-r-xl '
-                    src="/images/PetrolBlue.png"
+                    src="/images/PetrolBlue.svg"
                     width={500}
-                    height={571}
-                    objectFit="cover"
+                    height={565}
+                    objectFit="contain"
                     Logo="blue car being filled"
-                />
+                    />
             </div>
+        </div>
 
 
             <div>
@@ -82,7 +83,7 @@ export default function Login() {
                     </div>
                     <div className="mb-6">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-black ">Access</label>
-                        <select type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " ref={AccessInputRef} required>
+                        <select type="email" id="email" className="bg-gray-50 border border-Orange text-gray-900 text-sm rounded-lg  focus:border-Orange block w-full p-2.5 " ref={AccessInputRef} required>
                             <option>Shipping In</option>
                             <option>Shipping Out</option>
                             <option>Decanting In</option>
@@ -93,18 +94,18 @@ export default function Login() {
                     </div>
                     <div className="mb-6">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-black ">User Name</label>
-                        <input type="text" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter User Name" ref={userInputRef} required />
+                        <input type="text" id="email" className="bg-white border text-gray-900 text-sm rounded-lg  focus:border-Orange block w-full p-2.5" placeholder="Enter User Name" ref={userInputRef} required />
                     </div>
                     <div className="mb-6">
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Your password</label>
-                        <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" ref={passwordInputRef} required />
+                        <input type="password" id="password" className="bg-white border text-gray-900 text-sm rounded-lg  focus:border-Orange block w-full p-2.5" ref={passwordInputRef} required />
                     </div>
                     <div className="flex items-start mb-6">
 
 
                     </div>
                     
-                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
+                        <button type="submit" className="text-white bg-Orange hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
                     
                 </form>
             </div>
