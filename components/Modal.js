@@ -37,13 +37,13 @@ export default function Modal(props) {
                                 <div className="relative p-6 flex-auto">
                                     <form  className="bg-white rounded px-8 pt-6 pb-8 mb-4">
                                         <div  className="mb-4">
-                                            <label  className="block text-gray-700 text-sm font-bold mb-2" for="number">
+                                            <label  className="block text-gray-700 text-sm font-bold mb-2" htmlFor="number">
                                                 T/L Number
                                             </label>
                                             <input  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number" type="text" placeholder="T/L Number" />
                                         </div>
                                         <div  className="mb-6">
-                                            <label  className="block text-gray-700 text-sm font-bold mb-2" for="remarks">
+                                            <label  className="block text-gray-700 text-sm font-bold mb-2" htmlFor="remarks">
                                                 Remarks
                                             </label>
                                             <textarea  className="appearance-none border border-Orange rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="remarks" placeholder="Remarks" />
