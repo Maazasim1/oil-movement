@@ -9,14 +9,17 @@ export default function Shippingin() {
     console.log("session", session);
 
     const [data, setData] = useState([])
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
             const dataFromServer = await getAlldataFromServer();
+            console.log(dataFromServer);
             setData(dataFromServer);
         }
         fetchData();
-    }, []);
+        setRefresh(false);
+    }, [refresh]);
 
     const tlInputRef = useRef();
     const productsInputRef = useRef();
@@ -33,22 +36,25 @@ export default function Shippingin() {
     function handleSubmit(event){
         event.preventDefault();
         const payLoad={
-            tl:tlInputRef.current.value,
+            tlnum:tlInputRef.current.value,
             products:productsInputRef.current.value,
-            token:productsInputRef.current.value,
+            token:tokenInputRef.current.value,
             quantity:quantityInputRef.current.value,
+            shift:"A",
             customer:customerInputRef.current.value,
-            transferType:transferTypeInputRef.current.value,
-            dateIn:dateInInputRef.current.value,
-            timeIn:timeInInputRef.current.value,
-            tareWeight:tareWeightInputRef.current.value,
-            source:sourceInputRef.current.value,
-            remarks:remarksInputRef.current.value
+            transfertype:transferTypeInputRef.current.value,
+            date_in:dateInInputRef.current.value,
+            time_in:`"${timeInInputRef.current.value}"`,
+            tare_weight:tareWeightInputRef.current.value,
+            //source:sourceInputRef.current.value,
+            remarks:`"${remarksInputRef.current.value}"`
         }
 
         async function sendDate(payLoad){
+            console.log(JSON.stringify(payLoad))
             const response = await postAllDatatoServer(payLoad);
             console.log(response)
+            setRefresh(true);
         }
 
         sendDate(payLoad);
@@ -76,20 +82,20 @@ export default function Shippingin() {
                 <div className="pl-[20%] pt-[70px] w-full pb-20">
                     <div className='bg-white pl-20 shadow-sm rounded-xl mr-[60px] pt-20 pb-20'>
 
-                        <h1 className='text-5xl text-headBlue font-normal pb-10'>Form</h1>
+                        <h1 className='text-5xl text-headBlue font-normal pb-10'>New Entry</h1>
                         <form className="w-full max-w-[90%]" onSubmit={handleSubmit}>
                             <div className="flex flex-wrap -mx-3 mb-10 formContainer">
                                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="grid-T/L-no">
                                         T/L No.
                                     </label>
-                                    <input ref={tlInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-T/L no" type="text" placeholder="ABC123" />
+                                    <input ref={tlInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray" id="grid-T/L no" type="text" placeholder="ABC123" />
                                 </div>
                                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="grid-Products">
                                         Products
                                     </label>
-                                    <select ref={productsInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Products">
+                                    <select ref={productsInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray" id="grid-Products">
                                         <option>HSD</option>
                                     </select>
                                 </div>
@@ -98,54 +104,54 @@ export default function Shippingin() {
                                         Token
 
                                     </label>
-                                    <input ref={tokenInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="Token" type="text" />
+                                    <input ref={tokenInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Token" type="text" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="Quantity">
                                         Quantity
 
                                     </label>
-                                    <input ref={quantityInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="Quantity" type="text" />
+                                    <input ref={quantityInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Quantity" type="number" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="customer">
                                         Customer
 
                                     </label>
-                                    <input ref={customerInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer" type="text" />
+                                    <input ref={customerInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="customer" type="text" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="Transfer-Type">
                                         Transfer Type
 
                                     </label>
-                                    <input ref={transferTypeInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="Transfer-Type" type="text" />
+                                    <input ref={transferTypeInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Transfer-Type" type="text" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="date-in">
                                         Date In
 
                                     </label>
-                                    <input ref={dateInInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="date-in" type="date" />
+                                    <input ref={dateInInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="date-in" type="date" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="time-in">
                                         Time In
 
                                     </label>
-                                    <input ref={timeInInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="time-in" type="time" />
+                                    <input ref={timeInInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="time" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="tare-weight">
                                         Tare Weight(KG)
                                     </label>
-                                    <input ref={tareWeightInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="time-in" type="number" />
+                                    <input ref={tareWeightInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="number" />
                                 </div>
                                 <div className="w-full md:w-1/2 px-3">
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="source">
                                         Source
                                     </label>
-                                    <select ref={sourceInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="time-in" type="number" >
+                                    <select ref={sourceInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="number" >
                                         <option>ORC #1</option>
                                     </select>
                                 </div>
@@ -155,12 +161,12 @@ export default function Shippingin() {
                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="remarks">
                                         Remarks
                                     </label>
-                                    <textarea ref={remarksInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="remarks" type="textarea" />
+                                    <textarea ref={remarksInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="remarks" type="textarea" />
 
                                 </div>
                             </div>
 
-                            <button type='submit'>SUBMIT</button>
+                            <button className='bg-Orange text-white rounded-lg h-10 w-[120px]' type='submit'>SUBMIT</button>
 
                         </form>
                     </div>
@@ -171,7 +177,7 @@ export default function Shippingin() {
                 </div>
 
                 <div className='pl-[20%] w-[95%] pt-10 pb-20'>
-                    <h1 className='text-5xl text-headBlue font-normal pb-10'>Data</h1>
+                    <h1 className='text-5xl text-headBlue font-normal pb-10'>Past Records</h1>
                     <div className="overflow-x-hidden relative shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left text-gray-500">
                             <thead className="text-xs text-white uppercase bg-Orange ">
@@ -210,13 +216,13 @@ export default function Shippingin() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((responses, index) => (
+                                {data?.map((responses, index) => (
                                     <tr className="bg-white text-buttonWhite border-b " data-index={index}>
                                         <th scope="row" className="py-4 px-6 font-medium text-white whitespace-nowrap">
                                             {responses.TLNumber}
                                         </th>
                                         <td className="py-4 px-6">
-                                            {responses.products}
+                                            {responses.productCode}
                                         </td>
                                         <td className="py-4 px-6">
                                             {responses.tokenNumber}
