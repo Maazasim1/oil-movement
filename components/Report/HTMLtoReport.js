@@ -25,7 +25,7 @@ export default function HTMLtoReport(props) {
 
   return (
     <div>
-        <button
+        <button style={{display:props.hidden}}
                 className="text-buttonWhite active:bg-Orange font-bold uppercase text-sm px-6 py-3 rounded hover:bg-Orange hover:text-white outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => PrintDocument()}
