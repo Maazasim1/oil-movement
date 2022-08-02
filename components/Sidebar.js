@@ -29,15 +29,15 @@ export default function Sidebar(props) {
             </Link>
         <div className='block p-4 m-4 text-center'>
 
-           <ModalNew  stlye={{display: props.hidden}} title="New User" header="New User"/>
+           <ModalNew  stlye={{display: props.hidden}} title="New User" hidden={props.hidden} header="New User"/>
         </div>
         <div className='block p-4 m-4 text-center'>
 
-           <ModalChange  stlye={{display: props.hidden}} title="Change Credentials" header="Change Credentials"/>
+           <ModalChange  stlye={{display: props.hidden}} title="Change Credentials" hidden={props.hidden} header="Change Credentials"/>
         </div>
         <div className='block p-4 m-4 text-center'>
 
-           <HTMLtoReport  stlye={{display: props.hidden}} title="Generate Report"/>
+           <HTMLtoReport  stlye={{display: props.hidden}} hidden={props.hidden} title="Generate Report"/>
         </div>
   
            
