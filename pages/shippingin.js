@@ -216,8 +216,8 @@ export default function Shippingin() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data?.map((responses, index) => (
-                                    <tr className="bg-white text-buttonWhite border-b " data-index={index}>
+                                {data?.map((responses, key) => (
+                                    <tr className="bg-white text-buttonWhite border-b " data-index={key}>
                                         <th scope="row" className="py-4 px-6 font-medium text-white whitespace-nowrap">
                                             {responses.TLNumber}
                                         </th>
