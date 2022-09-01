@@ -10,27 +10,27 @@ export default function ShippingOut() {
 
     const [data, setData] = useState([])
     const [refresh, setRefresh] = useState(false)
-    const [asc,setAsc]=useState(true)
+    const [asc, setAsc] = useState(true)
 
     const [showDiv, setShowDiv] = useState(false)
 
-    const [ascArrow,setAscArrow] = useState({
-        TLNumber:true,
-        products:true,
-        token:true,
-        quantity:true,
-        customer:true,
-        transferType:true,
-        dateIn:true,
-        timIn:true,
-        tareWeight:true,
+    const [ascArrow, setAscArrow] = useState({
+        TLNumber: true,
+        products: true,
+        token: true,
+        quantity: true,
+        customer: true,
+        transferType: true,
+        dateIn: true,
+        timIn: true,
+        tareWeight: true,
 
     })
 
-    const [inputDisable,setInputDisable] = useState(true)
+    const [inputDisable, setInputDisable] = useState(true)
 
     //Sort data
-    const sortString = (dataArg,column) => {
+    const sortString = (dataArg, column) => {
         const dataCopy = [...dataArg];
         dataCopy.sort((a, b) => {
             let fa = a[column].toLowerCase(),
@@ -44,26 +44,40 @@ export default function ShippingOut() {
             }
             return 0;
         });
-        if(asc){
+        if (asc) {
             setData(dataCopy)
         }
-        else{
+        else {
             setData(dataCopy.reverse())
         }
     }
 
-    const handleSort=(type,column)=>{
+    const sortNumbers = (dataArg, column) => {
+        const dataCopy = [...dataArg];
+        dataCopy.sort((a, b) => {
+           
+                return a[column] - b[column]
+        });
+        if (asc) {
+            setData(dataCopy)
+        }
+        else {
+            setData(dataCopy.reverse())
+        }
+
+    }
+
+    const handleSort = (type, column) => {
         setAsc(!asc)
-        setAscArrow(prevState=>({...prevState,[column]:!prevState[column]}))
+        setAscArrow(prevState => ({ ...prevState, [column]: !prevState[column] }))
         console.log(ascArrow)
-        if(type==="number")
-        {
-            
+        if (type === "number") {
+            sortNumbers(data, column)
+
 
         }
-        if(type==="string")
-        {
-            sortString(data,column)
+        if (type === "string") {
+            sortString(data, column)
         }
     }
 
@@ -75,7 +89,7 @@ export default function ShippingOut() {
             setData(dataFromServer);
         }
 
-        
+
 
         fetchData();
         setRefresh(false);
@@ -255,7 +269,7 @@ export default function ShippingOut() {
 
                                                 */}
 
-                                                
+
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="tare-weight">
                                                         Tare Weight(KG)
@@ -273,18 +287,18 @@ export default function ShippingOut() {
                                                 </div>
                                             </div>
 
-                                            
+
 
                                             <button className='bg-Orange text-white rounded-lg h-10 w-[120px]' type='submit'>SUBMIT</button>
                                             <button onClick={() => setShowDiv(!showDiv)} className='bg-White text-black rounded-lg h-10 w-[120px] border-Orange border-2 ml-10'>Show Data</button>
-                                            {inputDisable ?(
+                                            {inputDisable ? (
 
                                                 <button onClick={() => setInputDisable(!inputDisable)} className='bg-white text-black rounded-lg h-10 w-[120px] border-Orange border-2 ml-10'>Toggle Control</button>
-                                                ):
+                                            ) :
                                                 (
-                                                <button onClick={() => setInputDisable(!inputDisable)} className='bg-Orange text-white rounded-lg h-10 w-[120px] border-Orange border-2 ml-10'>Toggle Control</button>
-                                                
-                                            )
+                                                    <button onClick={() => setInputDisable(!inputDisable)} className='bg-Orange text-white rounded-lg h-10 w-[120px] border-Orange border-2 ml-10'>Toggle Control</button>
+
+                                                )
 
                                             }
 
@@ -308,66 +322,66 @@ export default function ShippingOut() {
                                     <table className="w-full text-sm text-left text-gray-500">
                                         <thead className="text-xs text-white uppercase bg-Orange ">
                                             <tr >
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6 cursor-pointer">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6 cursor-pointer">
                                                     T/L No.
                                                     {
-                                                        ascArrow.TLNumber?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.TLNumber ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","products")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "products")} scope="col" className="py-3 px-6">
                                                     PRODUCTS
                                                     {
-                                                        ascArrow.products?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.products ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","token")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("number", "token")} scope="col" className="py-3 px-6">
                                                     TOKEN #
                                                     {
-                                                        ascArrow.token?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.token ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","quantity")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("number", "quantity")} scope="col" className="py-3 px-6">
                                                     QUANTITY
                                                     {
-                                                        ascArrow.quantity?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.quantity ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","customer")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "customer")} scope="col" className="py-3 px-6">
                                                     CUSTOMER
                                                     {
-                                                        ascArrow.customer?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.customer ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","transferType")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "transferType")} scope="col" className="py-3 px-6">
                                                     TRANSFER TYPE
                                                     {
-                                                        ascArrow.transferType?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.transferType ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","dateIn")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "dateIn")} scope="col" className="py-3 px-6">
                                                     DATE IN
                                                     {
-                                                        ascArrow.dateIn?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.dateIn ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","timIn")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "timIn")} scope="col" className="py-3 px-6">
                                                     TIME IN
                                                     {
-                                                        ascArrow.timIn?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.timIn ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","tareWeight")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("number", "tareWeight")} scope="col" className="py-3 px-6">
                                                     TARE WEIGHT(KG)
                                                     {
-                                                        ascArrow.tareWeight?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        ascArrow.tareWeight ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
