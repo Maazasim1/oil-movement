@@ -92,14 +92,14 @@ export default function Shippingin() {
             remarks: `"${remarksInputRef.current.value}"`
         }
 
-        async function sendDate(payLoad) {
+        async function sendData(payLoad) {
             console.log(JSON.stringify(payLoad))
             const response = await postAllDatatoServer(payLoad);
             console.log(response)
             setRefresh(true);
         }
 
-        sendDate(payLoad);
+        sendData(payLoad);
 
 
     }
