@@ -42,6 +42,10 @@ export default function Login() {
               // set some auth state
               router.replace('/Admin');
             }
+            if (!result.error && enteredAccess==='Shipping Out') {
+              // set some auth state
+              router.replace('/shippingout');
+            }
             if(result.error){
                 alert("Worng Credential");
             }

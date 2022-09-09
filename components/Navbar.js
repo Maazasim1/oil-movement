@@ -1,8 +1,19 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Navbar() {
+    var [date,setDate] = useState(new Date());
+
+    useEffect(() => {
+        var timer = setInterval(()=>setDate(new Date()), 1000 )
+        return function cleanup() {
+            clearInterval(timer)
+        }
+    
+    });
+
+
   return (
     <div className='sticky top-0 bg-white z-10' >
 
@@ -19,12 +30,12 @@ export default function Navbar() {
                 </div>
         <Link href="#home">
             <a className=''>
-                Date: 25 July 2022
+                Date: {date.toLocaleDateString()}
             </a>
         </Link>
         <Link href="#business">
             <a>
-                Time: 9:21 PM
+                Time: {date.toLocaleTimeString()}
             </a>
         </Link>
        
