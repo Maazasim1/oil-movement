@@ -36,7 +36,7 @@ export default function Find(props) {
           <select onChange={(e)=>changeRow(e.target.value)} id="dropdown-button-2" data-dropdown-toggle="dropdown-search-city" className="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">
             {
               props.data[0] && Object.keys(props.data[0])?.map((options) => (
-                <option key={indexOf(options)} value={options}>
+                <option key={options} value={options}>
                   {options}
                 </option>
               ))
