@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { getAlldataFromServer, postAllDatatoServer } from '../lib/shipping-in/utils'
+import Find from '../components/Find'
 export default function Shippingin() {
     const { data: session, status } = useSession()
     console.log("session", session);
@@ -346,6 +347,7 @@ export default function Shippingin() {
                                     </table>
                                     <button onClick={() => setShowDiv(!showDiv)} className='bg-White text-black rounded-lg h-10 w-[120px] border-Orange border-2 m-10'>Show Form</button>
                                 </div>
+                            <Find data={data}/>
                             </div>
                         </div>)
                 }
