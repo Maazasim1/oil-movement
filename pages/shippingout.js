@@ -340,7 +340,7 @@ export default function ShippingOut() {
                         ref={filledDateInputRef}
                         className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray"
                         id="filled-date"
-                        type="number"
+                        type="date"
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -354,7 +354,7 @@ export default function ShippingOut() {
                         ref={arrivalAtGantryTime}
                         className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray"
                         id="arrival-at-gantry"
-                        type="number"
+                        type="time"
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -368,7 +368,7 @@ export default function ShippingOut() {
                         ref={timeFilled}
                         className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray"
                         id="time-in"
-                        type="number"
+                        type="time"
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -382,7 +382,7 @@ export default function ShippingOut() {
                         ref={tempF}
                         className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray"
                         id="temperature"
-                        type="number"
+                        type="float"
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
@@ -396,7 +396,7 @@ export default function ShippingOut() {
                         ref={densityKgLtr}
                         className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray"
                         id="density"
-                        type="number"
+                        type="float"
                       />
                     </div>
                     <div className="w-full md:w-1/2 px-3">
