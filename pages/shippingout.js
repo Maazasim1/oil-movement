@@ -7,6 +7,7 @@ import {
   getAlldataFromServershipOut,
   postAllDatatoServerShipOut,
 } from "../lib/shipping-in/utils";
+import Find from "../components/Find";
 
 const initialState = {
   TLNumber: true,
@@ -635,6 +636,7 @@ export default function ShippingOut() {
               <h1 className="text-5xl text-headBlue font-normal pb-10">
                 Past Records
               </h1>
+              <Find data={data}/>
               <div className="overflow-x-scroll relative shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500">
                   <thead className="text-xs text-white uppercase bg-Orange ">

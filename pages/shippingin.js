@@ -126,6 +126,7 @@ export default function Shippingin() {
                     showDiv
                         ? (
                             <div>
+                                
                                 <div className="pl-[20%] pt-[70px] w-full pb-20">
 
 
@@ -235,6 +236,8 @@ export default function Shippingin() {
 
                             <div className='pl-[20%] w-[95%] pt-10 pb-20'>
                                 <h1 className='text-5xl text-headBlue font-normal pb-10'>Past Records</h1>
+                                <Find data={data}/>
+
                                 <div className="overflow-x-hidden relative shadow-md sm:rounded-lg">
                                     <table className="w-full text-sm text-left text-gray-500">
                                         <thead className="text-xs text-white uppercase bg-Orange ">
@@ -347,7 +350,6 @@ export default function Shippingin() {
                                     </table>
                                     <button onClick={() => setShowDiv(!showDiv)} className='bg-White text-black rounded-lg h-10 w-[120px] border-Orange border-2 m-10'>Show Form</button>
                                 </div>
-                            <Find data={data}/>
                             </div>
                         </div>)
                 }
