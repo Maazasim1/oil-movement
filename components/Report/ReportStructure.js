@@ -65,16 +65,16 @@ export default function ReportStructure() {
     <>
       <div className='flex justify-center '>
 
-        <nav className=' ml-[190PX] text-white bg-Orange rounded-lg p-5 my-10 w-[1200px] '>
+        <nav className=' ml-[180PX] text-white bg-Orange rounded-lg p-5 my-10 w-[1250px] '>
 
-          <button name='overAll' className='px-6' onClick={() => handlerReports(event)}>Over All</button>
-          <button name='bowswerSummary' className='px-6' onClick={() => handlerReports(event)}>Bowswer Summary</button>
-          <button name='statusRefinery' className='px-6' onClick={() => handlerReports(event)}>Status Refinery</button>
-          <button name='tankGauge' className='px-6' onClick={() => handlerReports(event)}>Tank Gauge</button>
-          <button name='loadingPlanvsShip' className='px-6' onClick={() => handlerReports(event)}>Loading Plan vs Ship</button>
-          <button name='partyWiseShip' className='px-6' onClick={() => handlerReports(event)}>Party Wise Ship</button>
-          <button name='quickStatus' className='px-6' onClick={() => handlerReports(event)}>Quick Status</button>
-          <button name='dropDownList' className='px-6' onClick={() => handlerReports(event)}>Drop Down List</button>
+          <button name='overAll' className='px-4' onClick={() => handlerReports(event)}>Over All</button>
+          <button name='bowswerSummary' className='px-4' onClick={() => handlerReports(event)}>Bowswer Summary</button>
+          <button name='statusRefinery' className='px-4' onClick={() => handlerReports(event)}>Status Refinery</button>
+          <button name='tankGauge' className='px-4' onClick={() => handlerReports(event)}>Tank Gauge</button>
+          <button name='loadingPlanvsShip' className='px-4' onClick={() => handlerReports(event)}>Loading Plan vs Ship</button>
+          <button name='partyWiseShip' className='px-4' onClick={() => handlerReports(event)}>Party Wise Ship</button>
+          <button name='quickStatus' className='px-4' onClick={() => handlerReports(event)}>Quick Status</button>
+          <button name='dropDownList' className='px-4' onClick={() => handlerReports(event)}>Drop Down List</button>
 
 
 
