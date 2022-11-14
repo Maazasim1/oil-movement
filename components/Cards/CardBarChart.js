@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,9 +10,29 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import faker from 'faker';
+import { getAlldatafromFO,getAlldatafromHSD,getAlldatafromPMG,getAlldatafromLPG } from '../../lib/shipping-in/utils';
 
 
 export default function CardBarChart() {
+
+    const [fo,setFo] = useState([]);
+    const [hsd,setHsd] = useState([]);
+    const [pmg,setPmg] = useState([]);
+    const [lpg,setLpg] = useState([]);
+
+    const test=[
+        {litresat60:1000},
+        {litresat85:2000},
+
+    ]
+
+
+    useEffect(() => {
+        setFo(getAlldatafromFO());
+        setHsd(getAlldatafromHSD());    
+        setPmg(getAlldatafromPMG());
+        setLpg(getAlldatafromLPG());
+    }, []);
 
   ChartJS.register(
     CategoryScale,
@@ -36,19 +56,19 @@ export default function CardBarChart() {
     },
   };
   
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const labels = [hsd,fo,pmg,lpg];
   
   const data = {
     labels,
     datasets: [
       {
-        label: 'FO',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        label: 'LITRES AT 60',
+        data: labels.map((at60) => at60.litresAt60),
         backgroundColor: '#FF5E37',
       },
       {
-        label: 'HBO',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        label: 'LITRES AT 85',
+        data: labels.map((at85) => at85.volumeAt85),
         backgroundColor: '#572C75',
       },
     ],
