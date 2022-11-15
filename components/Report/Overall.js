@@ -29,12 +29,12 @@ export default function OverAll() {
             setFo(await getAlldatafromFO());
 
             setLpg1(await getAlldatafromLPG());
-
+            console.log(hsd)
 
         }
         
         function totaling() {
-            hsd==="undefined"?setTotal([...hsd, ...fo, ...pmg, ...lpg1]):null
+            hsd.length!==0?setTotal([...hsd, ...fo, ...pmg, ...lpg1]):null
             console.log(total)
             setTotalTL(total.length)
             console.log(totalTL)
@@ -81,14 +81,14 @@ export default function OverAll() {
                                 -
                             </td>
                             <td>
-                                {hsd==="undefined"?hsd?.reduce(function (sum, current) {
+                                {hsd.length!==0?hsd.reduce(function (sum, current) {
                                     return sum + current.volumeAt85;
-                                }, 0):0}
+                                }, 0):"-"}
                             </td>
                             <td>
-                                {hsd==="undefined"?hsd?.reduce(function (sum, current) {
+                                {fo.length!==0?hsd.reduce(function (sum, current) {
                                     return sum + current.litresAt60;
-                                }, 0):0}
+                                }, 0):"-"}
 
 
 
@@ -115,14 +115,14 @@ export default function OverAll() {
                                 -
                             </td>
                             <td>
-                                {pmg==="undefined"?pmg?.reduce(function (sum, current) {
+                                {pmg.length!==0?pmg.reduce(function (sum, current) {
                                     return sum + current.volumeAt85;
-                                }, 0):0}
+                                }, 0):"-"}
                             </td>
                             <td>
-                                {pmg==="undefined"?pmg?.reduce(function (sum, current) {
+                                {fo.length!==0?pmg.reduce(function (sum, current) {
                                     return sum + current.litresAt60;
-                                }, 0):0}
+                                }, 0):"-"}
 
 
 
@@ -149,14 +149,14 @@ export default function OverAll() {
                                 -
                             </td>
                             <td>
-                                {fo==="undefined"?fo?.reduce(function (sum, current) {
+                                {fo.length!==0?fo.reduce(function (sum, current) {
                                     return sum + current.volumeAt85;
-                                }, 0):0}
+                                }, 0):"-"}
                             </td>
                             <td>
-                                {fo==="undefined"?fo?.reduce(function (sum, current) {
+                                {fo.length!==0?fo.reduce(function (sum, current) {
                                     return sum + current.litresAt60;
-                                }, 0):0}
+                                }, 0):"-"}
 
 
 
@@ -183,14 +183,14 @@ export default function OverAll() {
                                 -
                             </td>
                             <td>
-                                {hsd==="undefined"?lpg1?.reduce(function (sum, current) {
+                                {lpg1.length!==0?lpg1.reduce(function (sum, current) {
                                     return sum + current.volumeAt85;
-                                }, 0):0}
+                                }, 0):"-"}
                             </td>
                             <td>
-                                {hsd==="undefined"?lpg1?.reduce(function (sum, current) {
+                                {lpg1.length!==0?lpg1.reduce(function (sum, current) {
                                     return sum + current.litresAt60;
-                                }, 0):0}
+                                }, 0):"-"}
 
 
 

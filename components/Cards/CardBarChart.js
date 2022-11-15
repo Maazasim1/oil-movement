@@ -9,7 +9,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import faker from 'faker';
 import { getAlldatafromFO,getAlldatafromHSD,getAlldatafromPMG,getAlldatafromLPG } from '../../lib/shipping-in/utils';
 
 
@@ -19,7 +18,10 @@ export default function CardBarChart() {
     const [hsd,setHsd] = useState([]);
     const [pmg,setPmg] = useState([]);
     const [lpg,setLpg] = useState([]);
+  
+    const [total,setTotal]=useState()
 
+    
     const test=[
         {litresat60:1000},
         {litresat85:2000},
@@ -28,10 +30,22 @@ export default function CardBarChart() {
 
 
     useEffect(() => {
-        setFo(getAlldatafromFO());
-        setHsd(getAlldatafromHSD());    
-        setPmg(getAlldatafromPMG());
-        setLpg(getAlldatafromLPG());
+      async function getdata() {
+
+        setFo(await getAlldatafromFO());
+        setHsd(await getAlldatafromHSD());    
+        setPmg(await getAlldatafromPMG());
+        setLpg(await getAlldatafromLPG());
+
+      }
+
+      getdata().then(()=>{
+
+  setTotal([...hsd, ...fo, ...pmg, ...lpg]);
+}        
+
+      )
+      
     }, []);
 
   ChartJS.register(
@@ -56,19 +70,20 @@ export default function CardBarChart() {
     },
   };
   
-  const labels = [hsd,fo,pmg,lpg];
   
+  console.log(fo)
   const data = {
-    labels,
+    labels:["hsd","fo","pmg","lpg"],
     datasets: [
       {
         label: 'LITRES AT 60',
-        data: labels.map((at60) => at60.litresAt60),
+        data: total.map((item)=> item.litresAt60),
+        
         backgroundColor: '#FF5E37',
       },
       {
         label: 'LITRES AT 85',
-        data: labels.map((at85) => at85.volumeAt85),
+        data: total.map((item)=> item.litresAt85),
         backgroundColor: '#572C75',
       },
     ],
