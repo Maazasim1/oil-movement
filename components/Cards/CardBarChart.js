@@ -77,13 +77,13 @@ export default function CardBarChart() {
     datasets: [
       {
         label: 'LITRES AT 60',
-        data: total.map((item)=> item.litresAt60),
+        data: total?.map((item)=> item.litresAt60),
         
         backgroundColor: '#FF5E37',
       },
       {
         label: 'LITRES AT 85',
-        data: total.map((item)=> item.litresAt85),
+        data: total?.map((item)=> item.litresAt85),
         backgroundColor: '#572C75',
       },
     ],
