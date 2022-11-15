@@ -19,15 +19,10 @@ export default function CardBarChart() {
     const [pmg,setPmg] = useState([]);
     const [lpg,setLpg] = useState([]);
   
-    const [total,setTotal]=useState()
+    const [total,setTotal]=useState([])
 
     
-    const test=[
-        {litresat60:1000},
-        {litresat85:2000},
-
-    ]
-
+    
 
     useEffect(() => {
       async function getdata() {
@@ -39,12 +34,15 @@ export default function CardBarChart() {
 
       }
 
-      getdata().then(()=>{
-
-  setTotal([...hsd, ...fo, ...pmg, ...lpg]);
-}        
-
-      )
+      
+      console.log(fo,hsd,pmg,lpg)
+      console.log(total)
+      
+      
+        getdata()
+        setTotal([...hsd, ...fo, ...pmg, ...lpg]);
+  
+      
       
     }, []);
 
@@ -73,7 +71,7 @@ export default function CardBarChart() {
   
   console.log(fo)
   const data = {
-    labels:["hsd","fo","pmg","lpg"],
+    labels:["HSD","FO","PMG","LPG"],
     datasets: [
       {
         label: 'LITRES AT 60',
@@ -83,7 +81,7 @@ export default function CardBarChart() {
       },
       {
         label: 'LITRES AT 85',
-        data: total?.map((item)=> item.litresAt85),
+        data: total?.map((item1)=> item1.volumeAt85*10000),
         backgroundColor: '#572C75',
       },
     ],

@@ -1203,14 +1203,34 @@ export default function ShippingOut() {
                         >
                           {responses.TLNumber}
                         </th>
-                        <td className="py-4 px-6">{responses.productCode}</td>
+                        <td className="py-4 px-6">{responses.serialNumber}</td>
                         <td className="py-4 px-6">{responses.tokenNumber}</td>
-                        <td className="py-4 px-6">{responses.quantity}</td>
-                        <td className="py-4 px-6">{responses.customer}</td>
-                        <td className="py-4 px-6">{responses.transferType}</td>
-                        <td className="py-4 px-6">{responses.dateIn}</td>
-                        <td className="py-4 px-6">{responses.timeIn}</td>
-                        <td className="py-4 px-6">{responses.tareWeight}</td>
+                        <td className="py-4 px-6">{responses.filledDate}</td>
+                        <td className="py-4 px-6">{responses.arrivalAtGantry}</td>
+                        <td className="py-4 px-6">{responses.timeFilled}</td>
+                        <td className="py-4 px-6">{responses.temperature}</td>
+                        <td className="py-4 px-6">{responses.density}</td>
+                        <td className="py-4 px-6">{responses.grossWeight}</td>
+                        <td className="py-4 px-6">{responses.netWeight}</td>
+                        <td className="py-4 px-6">{responses.weightByDensity}</td>
+                        <td className="py-4 px-6">{responses.WBD_minus_NW}</td>
+                        <td className="py-4 px-6">{responses.invoiceDate}</td>
+                        <td className="py-4 px-6">{responses.dateOut}</td>
+                        <td className="py-4 px-6">{responses.timeOut}</td>
+                        <td className="py-4 px-6">{responses.pointNumber}</td>
+                        <td className="py-4 px-6">{responses.filledBy}</td>
+                        <td className="py-4 px-6">{responses.sealedBy}</td>
+                        <td className="py-4 px-6">{responses.tankNo}</td>
+                        <td className="py-4 px-6">{responses.labCertificateNumber}</td>
+                        <td className="py-4 px-6">{responses.volumeAt85}</td>
+                        <td className="py-4 px-6">{responses.litresAt60}</td>
+                        <td className="py-4 px-6">{responses.ArrivalToGantryDuration}</td>
+                        <td className="py-4 px-6">{responses.fillingDuration}</td>
+                        <td className="py-4 px-6">{responses.FillingToOutDuration}</td>
+                        <td className="py-4 px-6">{responses.inToOutDuration}</td>
+                        <td className="py-4 px-6">{responses.remarks}</td>
+                        <td className="py-4 px-6">{responses.sourcePlant}</td>
+                       
                         <td className="py-4 px-6">
                           <a
                             href="#"
