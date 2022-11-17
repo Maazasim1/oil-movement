@@ -37,7 +37,7 @@ export default function Sidebar(props) {
         </div>
         <div className='block p-4 m-4 text-center'>
 
-           <HTMLtoReport  stlye={{display: props.hidden}} hidden={props.hidden} title="Generate Report"/>
+           {/* <HTMLtoReport  stlye={{display: props.hidden}} hidden={props.hidden} title="Generate Report"/> */}
         </div>
   
            

@@ -7,7 +7,7 @@ import {
   getAlldataFromServershipOut,
   postAllDatatoServerShipOut,
 } from "../lib/shipping-in/utils";
-import Find from "../components/Find";
+import FindOut from "../components/FindOut";
 
 const initialState = {
   TLNumber: true,
@@ -109,38 +109,36 @@ export default function ShippingOut() {
   const filledDateInputRef = useRef();
   const arrivalAtGantryTime = useRef();
   const timeFilled = useRef();
-  const tempF=useRef();
-  const densityKgLtr=useRef();
-  const invoiceDate=useRef();
-  const dateOut=useRef();
-  const timeOut=useRef();
-  const pointNo=useRef();
-  const filledBy=useRef();
-  const checkedBy=useRef();
-  const sealAppliedBy=useRef();
-  const tankNo=useRef();
-  const labCertificateNumber=useRef();
-  const statusRef=useRef();
-  const fillingTime=useRef();
+  const tempF = useRef();
+  const densityKgLtr = useRef();
+  const invoiceDate = useRef();
+  const dateOut = useRef();
+  const timeOut = useRef();
+  const pointNo = useRef();
+  const filledBy = useRef();
+  const checkedBy = useRef();
+  const sealAppliedBy = useRef();
+  const tankNo = useRef();
+  const labCertificateNumber = useRef();
+  const statusRef = useRef();
+  const fillingTime = useRef();
 
   function handleSubmit(event) {
     event.preventDefault();
     const payLoad = {
-      arrivalAtGantryTime: arrivalAtGantryTime.current.value,
+      arrivalAtGantry: arrivalAtGantryTime.current.value,
       timeFilled: timeFilled.current.value,
-      tempF: tempF.current.value,
+      temperature: tempF.current.value,
       densityKgLtr: densityKgLtr.current.value,
       invoiceDate: invoiceDate.current.value,
       dateOut: dateOut.current.value,
       timeOut: timeOut.current.value,
-      pointNo: pointNo.current.value,
+      pointNumber: pointNo.current.value,
       filledBy: filledBy.current.value,
-      checkedBy: checkedBy.current.value,
-      sealAppliedBy:sealAppliedBy.current.value,
-      tankNo:tankNo.current.value,
-      labCertificateNumber:labCertificateNumber.current.value,
-      statusRef:statusRef.current.value,
-      fillingTime:fillingTime.current.value,
+      sealedBy: checkedBy.current.value,
+      tankNo: tankNo.current.value,
+      labCertificateNumber: labCertificateNumber.current.value,
+      fillingDuration: fillingTime.current.value,
     };
 
     async function sendData(payLoad) {
@@ -181,7 +179,7 @@ export default function ShippingOut() {
                         className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2"
                         htmlFor="grid-T/L-no"
                       >
-                        T/L No.
+                        Token Number
                       </label>
                       <input
                         disabled={inputDisable}
@@ -296,7 +294,7 @@ export default function ShippingOut() {
                         id="time-in"
                         type="time"
                       />
-                      </div>
+                    </div>
                     <div className="w-full md:w-1/2 px-3">
                       <label
                         className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2"
@@ -314,7 +312,7 @@ export default function ShippingOut() {
                         <option>ORC #1</option>
                       </select>
                     </div>
-                    
+
                     <div className="w-full md:w-1/2 px-3">
                       <label
                         className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2"
@@ -461,7 +459,7 @@ export default function ShippingOut() {
                         className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2"
                         htmlFor="temperature"
                       >
-                       Filled By
+                        Filled By
                       </label>
                       <input
                         ref={filledBy}
@@ -475,7 +473,7 @@ export default function ShippingOut() {
                         className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2"
                         htmlFor="checkedBy"
                       >
-                        Checked By
+                        Sealed By
                       </label>
                       <input
                         ref={checkedBy}
@@ -554,8 +552,8 @@ export default function ShippingOut() {
                         type="time"
                       />
                     </div>
-               
-                    
+
+
 
 
                     {/*Shipping Out Fields 
@@ -591,9 +589,9 @@ export default function ShippingOut() {
 
                                                 */}
 
-                 
+
                   </div>
-          
+
 
                   <button
                     className="bg-Orange text-white rounded-lg h-10 w-[120px]"
@@ -636,17 +634,20 @@ export default function ShippingOut() {
               <h1 className="text-5xl text-headBlue font-normal pb-10">
                 Past Records
               </h1>
-              <Find data={data}/>
+              <FindOut data={data} />
+              <h2 className="py-10">
+                Please click the below arrows to sort the columns
+              </h2>
               <div className="overflow-x-scroll relative shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500">
                   <thead className="text-xs text-white uppercase bg-Orange ">
                     <tr>
                       <th
-                        onClick={() => handleSort("string", "TLNumber")}
+                        onClick={() => handleSort("number", "serialNumber")}
                         scope="col"
                         className="py-3 px-6 cursor-pointer"
                       >
-                        T/L No.
+                        Serial Number
                         {ascArrow.TLNumber ? (
                           <img
                             className="h-4"
@@ -657,117 +658,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("string", "products")}
+                        onClick={() => handleSort("number", "tokenNumber")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        PRODUCTS
+                        Token Number
                         {ascArrow.products ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "token")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        TOKEN #
-                        {ascArrow.token ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "quantity")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        QUANTITY
-                        {ascArrow.quantity ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("string", "customer")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        CUSTOMER
-                        {ascArrow.customer ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("string", "transferType")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        TRANSFER TYPE
-                        {ascArrow.transferType ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("string", "dateIn")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        DATE IN
-                        {ascArrow.dateIn ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("string", "timIn")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        TIME IN
-                        {ascArrow.timIn ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "tareWeight")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        TARE WEIGHT(KG)
-                        {ascArrow.tareWeight ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -781,8 +677,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        FILLED DATE
-                        {ascArrow.filledDate ? (
+                        Filled Date
+                        {ascArrow.token ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -796,8 +692,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        ARRIVAL AT GANTRY(TIME)
-                        {ascArrow.arrivalAtGantry ? (
+                        Arrival At Gantry
+                        {ascArrow.quantity ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -807,12 +703,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "timeFilled")}
+                        onClick={() => handleSort("string", "timeFilled")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        TIME FILLED
-                        {ascArrow.timeFilled ? (
+                        Time Filled
+                        {ascArrow.customer ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -822,12 +718,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "tempF")}
+                        onClick={() => handleSort("string", "temperature")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        TEMP °F
-                        {ascArrow.tempF ? (
+                        Temperature
+                        {ascArrow.transferType ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -837,12 +733,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "density")}
+                        onClick={() => handleSort("string", "density")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        DENSITY (KG/LTR)
-                        {ascArrow.density ? (
+                        Density
+                        {ascArrow.dateIn ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -852,12 +748,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "grossWeight")}
+                        onClick={() => handleSort("string", "grossWeight")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        GROSS WEIGHT (KG)
-                        {ascArrow.grossWeight ? (
+                        Gross Weight
+                        {ascArrow.timIn ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -871,8 +767,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        NET WEIGHT(KG)
-                        {ascArrow.netWeight ? (
+                        Net Weight
+                        {ascArrow.tareWeight ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -886,8 +782,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        WBD
-                        {ascArrow.weightByDensity ? (
+                        Weight By Density
+                        {ascArrow.filledDate ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -897,12 +793,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "differnce")}
+                        onClick={() => handleSort("number", "WBD_minus_NW")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        DIFF BW WBD/NW (KG)
-                        {ascArrow.difference ? (
+                        weightByDensity - NetWeigt
+                        {ascArrow.arrivalAtGantry ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -916,8 +812,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        INVOICE DATE
-                        {ascArrow.incoiceDate ? (
+                        Invoice Date
+                        {ascArrow.timeFilled ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -931,8 +827,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        DATE OUT
-                        {ascArrow.dateOut ? (
+                        Date Out
+                        {ascArrow.tempF ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -942,12 +838,27 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "pointNo")}
+                        onClick={() => handleSort("number", "timeOut")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        POINT NUMBER
-                        {ascArrow.pointNo ? (
+                        Time Out
+                        {ascArrow.density ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "pointNumber")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Point Number
+                        {ascArrow.grossWeight ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -961,8 +872,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        FILLED BY
-                        {ascArrow.filledBy ? (
+                        Filled By
+                        {ascArrow.netWeight ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -972,12 +883,12 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "checkedBy")}
+                        onClick={() => handleSort("number", "filledBy")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        CHECKED BY
-                        {ascArrow.checkedBy ? (
+                        Filled By
+                        {ascArrow.weightByDensity ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -991,8 +902,8 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        SEAL APPLIED BY
-                        {ascArrow.sealedBy ? (
+                        Sealed By
+                        {ascArrow.difference ? (
                           <img
                             className="h-4"
                             src="images/sort-down-solid.svg"
@@ -1006,7 +917,97 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        TANK NO.
+                        Tank Number
+                        {ascArrow.incoiceDate ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "labCertificateNumber")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Lab Certificate Number
+                        {ascArrow.dateOut ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "volumeAt85")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Volume At 85
+                        {ascArrow.pointNo ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "litresAt60")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Litres At 60
+                        {ascArrow.filledBy ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "ArrivalToGantryDuration")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Arrival To Gantry Duration
+                        {ascArrow.checkedBy ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "fillingDuration")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Filling Duration
+                        {ascArrow.sealedBy ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
+                      <th
+                        onClick={() => handleSort("number", "FillingToOutDuration")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Filling to Out Duration
                         {ascArrow.tankNo ? (
                           <img
                             className="h-4"
@@ -1017,11 +1018,11 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "labCertificate")}
+                        onClick={() => handleSort("number", "inToOutDuration")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        LAB CERTIFICATE NUMBER
+                        In to Out Duration
                         {ascArrow.labCertificate ? (
                           <img
                             className="h-4"
@@ -1032,11 +1033,11 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "vol85")}
+                        onClick={() => handleSort("number", "remarks")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        volume at 85
+                        Remarks
                         {ascArrow.vol85 ? (
                           <img
                             className="h-4"
@@ -1047,11 +1048,11 @@ export default function ShippingOut() {
                         )}
                       </th>
                       <th
-                        onClick={() => handleSort("number", "ltr60")}
+                        onClick={() => handleSort("number", "sourcePlant")}
                         scope="col"
                         className="py-3 px-6"
                       >
-                        LTR AT 60
+                        Source Plant
                         {ascArrow.ltr60 ? (
                           <img
                             className="h-4"
@@ -1066,7 +1067,7 @@ export default function ShippingOut() {
                         scope="col"
                         className="py-3 px-6"
                       >
-                        M.TONS AT 60
+                        Edit
                         {ascArrow.mtons60 ? (
                           <img
                             className="h-4"
@@ -1076,119 +1077,9 @@ export default function ShippingOut() {
                           <img className="h-4" src="images/sort-up-solid.svg" />
                         )}
                       </th>
-                      <th
-                        onClick={() => handleSort("number", "bbls60")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        BBLS AT 60
-                        {ascArrow.bbls60 ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "status")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        STATUS
-                        {ascArrow.status ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() =>
-                          handleSort("number", "differenceBwTiAAG")
-                        }
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        DIFF BETWEEN TIME IN/ARRIVAL AT GANTRY
-                        {ascArrow.differenceBwTiAAG ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "billingTime")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        BILLING TIME
-                        {ascArrow.billingTime ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() =>
-                          handleSort("number", "diffBwFillingAndOut")
-                        }
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        DIFF BETWEEN FILLING/OUT
-                        {ascArrow.diffBwFillingAndOut ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "diffTime")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        TIME IN/OUT
-                        {ascArrow.diffTime ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
-                      <th
-                        onClick={() => handleSort("number", "tempF")}
-                        scope="col"
-                        className="py-3 px-6"
-                      >
-                        TEMP °F
-                        {ascArrow.tempF ? (
-                          <img
-                            className="h-4"
-                            src="images/sort-down-solid.svg"
-                          />
-                        ) : (
-                          <img className="h-4" src="images/sort-up-solid.svg" />
-                        )}
-                      </th>
 
-                      <th scope="col" className="py-3 px-6">
-                        EDIT
-                      </th>
+
+
                     </tr>
                   </thead>
                   <tbody>
@@ -1197,12 +1088,9 @@ export default function ShippingOut() {
                         className="bg-white text-buttonWhite border-b "
                         key={responses.serialNumber}
                       >
-                        <th
-                          scope="row"
-                          className="py-4 px-6 font-medium text-black whitespace-nowrap"
-                        >
-                          {responses.TLNumber}
-                        </th>
+
+
+
                         <td className="py-4 px-6">{responses.serialNumber}</td>
                         <td className="py-4 px-6">{responses.tokenNumber}</td>
                         <td className="py-4 px-6">{responses.filledDate}</td>
@@ -1230,7 +1118,7 @@ export default function ShippingOut() {
                         <td className="py-4 px-6">{responses.inToOutDuration}</td>
                         <td className="py-4 px-6">{responses.remarks}</td>
                         <td className="py-4 px-6">{responses.sourcePlant}</td>
-                       
+
                         <td className="py-4 px-6">
                           <a
                             href="#"

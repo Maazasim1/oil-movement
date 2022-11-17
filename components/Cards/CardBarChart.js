@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,42 +9,49 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { getAlldatafromFO,getAlldatafromHSD,getAlldatafromPMG,getAlldatafromLPG } from '../../lib/shipping-in/utils';
+import { getAlldatafromFO, getAlldatafromHSD, getAlldatafromPMG, getAlldatafromLPG } from '../../lib/shipping-in/utils';
 
 
 export default function CardBarChart() {
 
-    const [fo,setFo] = useState([]);
-    const [hsd,setHsd] = useState([]);
-    const [pmg,setPmg] = useState([]);
-    const [lpg,setLpg] = useState([]);
-  
-    const [total,setTotal]=useState([])
+  const [fo, setFo] = useState([]);
+  const [hsd, setHsd] = useState([]);
+  const [pmg, setPmg] = useState([]);
+  const [lpg, setLpg] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
-    
-    
+  const [total, setTotal] = useState([])
 
-    useEffect(() => {
-      async function getdata() {
+
+
+
+  useEffect(() => {
+    async function getdata() {
+      try {
+
 
         setFo(await getAlldatafromFO());
-        setHsd(await getAlldatafromHSD());    
+        setHsd(await getAlldatafromHSD());
         setPmg(await getAlldatafromPMG());
         setLpg(await getAlldatafromLPG());
-
+      }
+      catch {
+        console.log("No data returned")
       }
 
-      
-      console.log(fo,hsd,pmg,lpg)
-      console.log(total)
-      
-      
-        getdata()
-        setTotal([...hsd, ...fo, ...pmg, ...lpg]);
-  
-      
-      
-    }, []);
+    }
+
+
+    console.log(fo, hsd, pmg, lpg)
+    console.log(total)
+
+
+    getdata()
+    setTotal([...hsd, ...fo, ...pmg, ...lpg]);
+
+
+
+  }, [refresh]);
 
   ChartJS.register(
     CategoryScale,
@@ -54,7 +61,7 @@ export default function CardBarChart() {
     Tooltip,
     Legend
   );
-  
+
   const options = {
     responsive: true,
     plugins: {
@@ -67,21 +74,21 @@ export default function CardBarChart() {
       },
     },
   };
-  
-  
+
+
   console.log(fo)
   const data = {
-    labels:["HSD","FO","PMG","LPG"],
+    labels: ["HSD", "FO", "PMG", "LPG"],
     datasets: [
       {
         label: 'LITRES AT 60',
-        data: total?.map((item)=> item.litresAt60),
-        
+        data: total?.map((item) => item.litresAt60),
+
         backgroundColor: '#FF5E37',
       },
       {
         label: 'LITRES AT 85',
-        data: total?.map((item1)=> item1.volumeAt85*10000),
+        data: total?.map((item1) => item1.volumeAt85 * 10000),
         backgroundColor: '#572C75',
       },
     ],
@@ -90,6 +97,9 @@ export default function CardBarChart() {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded">
+      <button onClick={()=>setRefresh(!refresh)} className='bg-Orange text-white rounded-lg w-32 h-10 m-10'>
+        Get Data
+      </button>
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
@@ -105,7 +115,7 @@ export default function CardBarChart() {
         <div className="p-4 flex-auto">
           {/* Chart */}
           <div className="relative h-350-px">
-            <Bar data={data} options={options}/>
+            <Bar data={data} options={options} />
           </div>
         </div>
       </div>

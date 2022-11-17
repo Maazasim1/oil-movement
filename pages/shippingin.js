@@ -11,12 +11,12 @@ export default function Shippingin() {
 
     const [data, setData] = useState([])
     const [refresh, setRefresh] = useState(false)
-    const [asc,setAsc]=useState(true)
+    const [asc, setAsc] = useState(true)
 
     const [showDiv, setShowDiv] = useState(false)
 
     //Sort data
-    const sortString = (dataArg,column) => {
+    const sortString = (dataArg, column) => {
         const dataCopy = [...dataArg];
         dataCopy.sort((a, b) => {
             let fa = a[column].toLowerCase(),
@@ -30,23 +30,21 @@ export default function Shippingin() {
             }
             return 0;
         });
-        if(asc){
+        if (asc) {
             setData(dataCopy)
         }
-        else{
+        else {
             setData(dataCopy.reverse())
         }
     }
 
-    const handleSort=(type,column)=>{
+    const handleSort = (type, column) => {
         setAsc(!asc)
-        if(type==="number")
-        {
+        if (type === "number") {
 
         }
-        if(type==="string")
-        {
-            sortString(data,column)
+        if (type === "string") {
+            sortString(data, column)
         }
     }
 
@@ -58,7 +56,7 @@ export default function Shippingin() {
             setData(dataFromServer);
         }
 
-        
+
 
         fetchData();
         setRefresh(false);
@@ -126,7 +124,7 @@ export default function Shippingin() {
                     showDiv
                         ? (
                             <div>
-                                
+
                                 <div className="pl-[20%] pt-[70px] w-full pb-20">
 
 
@@ -236,72 +234,75 @@ export default function Shippingin() {
 
                             <div className='pl-[20%] w-[95%] pt-10 pb-20'>
                                 <h1 className='text-5xl text-headBlue font-normal pb-10'>Past Records</h1>
-                                <Find data={data}/>
+                                <Find data={data} />
+                                <h2 className="py-10">
+                                    Please click the below arrows to sort the columns
+                                </h2>
 
                                 <div className="overflow-x-hidden relative shadow-md sm:rounded-lg">
                                     <table className="w-full text-sm text-left text-gray-500">
                                         <thead className="text-xs text-white uppercase bg-Orange ">
                                             <tr >
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6 cursor-pointer">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6 cursor-pointer">
                                                     T/L No.
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     PRODUCTS
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     TOKEN #
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     QUANTITY
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     CUSTOMER
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     TRANSFER TYPE
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     DATE IN
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     TIME IN
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
-                                                <th onClick={()=>handleSort("string","TLNumber")} scope="col" className="py-3 px-6">
+                                                <th onClick={() => handleSort("string", "TLNumber")} scope="col" className="py-3 px-6">
                                                     TARE WEIGHT(KG)
                                                     {
-                                                        asc?<img className="h-4" src='images/sort-down-solid.svg' />:<img className="h-4" src="images/sort-up-solid.svg" />
+                                                        asc ? <img className="h-4" src='images/sort-down-solid.svg' /> : <img className="h-4" src="images/sort-up-solid.svg" />
 
                                                     }
                                                 </th>
