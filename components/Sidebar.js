@@ -1,9 +1,6 @@
 import React from 'react'
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/router';
-import Modal from './Modal';
 import ModalChange from './ModalChange';
 import ModalNew from './ModalNew';
 import HTMLtoReport from './Report/HTMLtoReport';
@@ -12,7 +9,6 @@ import ShippingModal from './shippinginmodal';
 
 export default function Sidebar(props) {
     const { data: session } = useSession();
-    const router = useRouter();
     console.log("session", session);
     return (
         <div className='h-[85%] w-[13%] fixed z-20 top-0 left-0 bg-white rounded-xl overflow-x-hidden ml-5 mt-[100px] mb-[50px]'>
@@ -51,7 +47,7 @@ export default function Sidebar(props) {
 
 
 
-            <button onClick={() => { signOut({ callbackUrl: '/' }) }} className='text-buttonWhite absolute bottom-3 inline-block rounded-0 p-4 w-full text-center '><img src='/images/logout.svg' className='h-5 w-5 inline-block align-middle mb-1 mr-5 text-buttonWhite' /><span>Logout</span></button>
+            <button onClick={() => { signOut({ callbackUrl: '/' }).then() }} className='text-buttonWhite absolute bottom-3 inline-block rounded-0 p-4 w-full text-center '><img src='/images/logout.svg' className='h-5 w-5 inline-block align-middle mb-1 mr-5 text-buttonWhite' alt="logout" /><span>Logout</span></button>
 
 
 

@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { useSession, getSession } from "next-auth/react"
-import Sidebar from '../components/Sidebar'
-import Navbar from '../components/Navbar'
+import React, { useEffect, useState, useRef,useImperativeHandle } from 'react'
+import { useSession } from "next-auth/react"
+
 import Footer from '../components/Footer'
-import { getAlldataFromServer, postAllDatatoServer,deleteDataShipin } from '../lib/shipping-in/utils'
+import { getAlldataFromServer, postAllDatatoServer,deleteDataShipin,updateDataShipin } from '../lib/shipping-in/utils'
 import Find from '../components/Find'
 export default function ShippinginAdmin(props) {
     const { data: session, status } = useSession()
@@ -12,6 +11,8 @@ export default function ShippinginAdmin(props) {
     const [data, setData] = useState([])
     const [refresh, setRefresh] = useState(false)
     const [asc, setAsc] = useState(true)
+    const [update,setUpdate]=useState({})
+    const [updateorsubmit,setUpdateOrSubmit]=useState(false)
 
     const [showDiv, setShowDiv] = useState(false)
     //delete data
@@ -20,6 +21,16 @@ export default function ShippinginAdmin(props) {
         const data=await deleteDataShipin(serialNumber);
         console.log(data);
         setRefresh(!refresh)
+    }
+
+    //Update data
+
+    async function updateData(updateData){
+        console.log(updateData);
+        const data=await updateDataShipin(updateData);
+        console.log(data);
+        setRefresh(!refresh)
+
     }
 
     //Sort data
@@ -80,6 +91,8 @@ export default function ShippinginAdmin(props) {
     const tareWeightInputRef = useRef();
     const sourceInputRef = useRef();
     const remarksInputRef = useRef();
+    const myForm=useRef();
+
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -97,6 +110,11 @@ export default function ShippinginAdmin(props) {
             //source:sourceInputRef.current.value,
             remarks: `"${remarksInputRef.current.value}"`
         }
+        console.log(myForm.current.buttonId)
+
+        if(myForm.current.buttonId==="submit")
+        {
+
 
         async function sendData(payLoad) {
             console.log(JSON.stringify(payLoad))
@@ -105,10 +123,47 @@ export default function ShippinginAdmin(props) {
             setRefresh(true);
         }
 
-        sendData(payLoad);
+        sendData(payLoad).then(()=>console.log("data sent to server"));
+        }
+
+        if(myForm.current.buttonId==="update")
+        {
+            console.log("inside update")
+            updateData(payLoad).then(()=>console.log("data updated successfully"))
+            setUpdateOrSubmit(false)
+            const emptyObject=emptyState()
+            console.log(emptyObject)
+            setUpdate(emptyObject)
+            console.log(update)
+            event.target.reset();
+        }
+
+    }
+
+    function emptyState(){
+        let updateCopy=update;
+        Object.keys(updateCopy).forEach(key => {
+            updateCopy[key] = "-";
+        });
+
+        return updateCopy
+    }
+
+    function handleUpdate(response){
+        setUpdateOrSubmit(true)
+        setUpdate(response);
+        console.log(response)
+
+            console.log(response.TLNumber);
+
+
+
+        setShowDiv(!showDiv);
+
 
 
     }
+
 
 
     if (status === "loading") {
@@ -139,19 +194,19 @@ export default function ShippinginAdmin(props) {
 
                                         <h1 className='text-5xl text-headBlue font-normal pb-10'>New Entry</h1>
 
-                                        <form className="w-full max-w-[90%]" onSubmit={handleSubmit}>
+                                        <form className="w-full max-w-[90%]" onSubmit={handleSubmit} ref={myForm}>
                                             <div className="flex flex-wrap -mx-3 mb-10 formContainer">
                                                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="grid-T/L-no">
                                                         T/L No.
                                                     </label>
-                                                    <input ref={tlInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray" id="grid-T/L no" type="text" placeholder="ABC123" />
+                                                    <input defaultValue={update?.TLNumber} ref={tlInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray" id="grid-T/L no" type="text" placeholder="ABC123" />
                                                 </div>
                                                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="grid-Products">
                                                         Products
                                                     </label>
-                                                    <select ref={productsInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray" id="grid-Products">
+                                                    <select ref={productsInputRef} defaultValue={update?.productCode} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray" id="grid-Products">
                                                         <option>HSD</option>
                                                     </select>
                                                 </div>
@@ -160,48 +215,48 @@ export default function ShippinginAdmin(props) {
                                                         Token
 
                                                     </label>
-                                                    <input ref={tokenInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Token" type="text" />
+                                                    <input ref={tokenInputRef} defaultValue={update?.tokenNumber} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Token" type="text" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="Quantity">
                                                         Quantity
 
                                                     </label>
-                                                    <input ref={quantityInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Quantity" type="number" />
+                                                    <input ref={quantityInputRef} defaultValue={update?.quantity} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Quantity" type="number" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="customer">
                                                         Customer
 
                                                     </label>
-                                                    <input ref={customerInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="customer" type="text" />
+                                                    <input ref={customerInputRef} defaultValue={update?.customer} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="customer" type="text" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="Transfer-Type">
                                                         Transfer Type
 
                                                     </label>
-                                                    <input ref={transferTypeInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Transfer-Type" type="text" />
+                                                    <input ref={transferTypeInputRef} defaultValue={update?.transferType} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="Transfer-Type" type="text" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="date-in">
                                                         Date In
 
                                                     </label>
-                                                    <input ref={dateInInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="date-in" type="date" />
+                                                    <input ref={dateInInputRef} defaultValue={update?.dateIn?.toString().slice(0,10)} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="date-in" type="date" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="time-in">
                                                         Time In
 
                                                     </label>
-                                                    <input ref={timeInInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="time" />
+                                                    <input ref={timeInInputRef} defaultValue={update?.timeIn} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="time" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="tare-weight">
                                                         Tare Weight(KG)
                                                     </label>
-                                                    <input ref={tareWeightInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="number" />
+                                                    <input ref={tareWeightInputRef} defaultValue={update?.tareWeight} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="time-in" type="number" />
                                                 </div>
                                                 <div className="w-full md:w-1/2 px-3">
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="source">
@@ -217,13 +272,14 @@ export default function ShippinginAdmin(props) {
                                                     <label className="block uppercase tracking-wide text-headBlue text-xs font-bold mb-2" htmlFor="remarks">
                                                         Remarks
                                                     </label>
-                                                    <textarea ref={remarksInputRef} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="remarks" type="textarea" />
+                                                    <textarea ref={remarksInputRef} defaultValue={update?.remarks} className="appearance-none block w-full bg-gray-200 text-headBlue border  border-none bg-lastGray  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-lastGray focus:border-lastGray" id="remarks" type="textarea" />
 
                                                 </div>
                                             </div>
+                                            {!updateorsubmit?<button onClick={e => myForm.current.buttonId=e.target.id} id="submit" className='bg-Orange text-white rounded-lg h-10 w-[120px]' type='submit' >SUBMIT</button>:
+                                            <button onClick={e => myForm.current.buttonId=e.target.id} id="update" className='bg-Orange text-white rounded-lg h-10 w-[120px]' type='submit'>UPDATE DATA</button>}
 
-                                            <button className='bg-Orange text-white rounded-lg h-10 w-[120px]' type='submit'>SUBMIT</button>
-                                            <button onClick={() => setShowDiv(!showDiv)} className='bg-White text-black rounded-lg h-10 w-[120px] border-Orange border-2 ml-10'>Show Data</button>
+                                            <button id="update" onClick={() => setShowDiv(!showDiv)} className='bg-White text-black rounded-lg h-10 w-[120px] border-Orange border-2 ml-10'>Show Data</button>
 
                                         </form>
                                     </div>
@@ -246,7 +302,7 @@ export default function ShippinginAdmin(props) {
                                     Please click the below arrows to sort the columns
                                 </h2>
 
-                                <div className="overflow-x-hidden relative shadow-md sm:rounded-lg">
+                                <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
                                     <table className="w-full text-sm text-left text-gray-500">
                                         <thead className="text-xs text-white uppercase bg-Orange ">
                                             <tr >
@@ -313,6 +369,12 @@ export default function ShippinginAdmin(props) {
 
                                                     }
                                                 </th>
+                                                <th>
+
+                                                </th>
+                                                <th>
+
+                                                </th>
                                             
 
                                             </tr>
@@ -348,7 +410,7 @@ export default function ShippinginAdmin(props) {
                                                         {responses.tareWeight}
                                                     </td>
                                                     {props.access?<><td className="py-4 px-6">
-                                                        <a href="#" className="font-medium text-blue-600  hover:underline">Edit</a>
+                                                        <a href="#" className="font-medium text-blue-600  hover:underline" onClick={()=>handleUpdate(responses)}>Edit</a>
                                                     </td><td className="py-4 px-6">
                                                             <a href="#" className="font-medium text-blue-600  hover:underline" onClick={() => deleteData(responses.serialNumber)}>DELETE</a>
                                                         </td></>:null}
