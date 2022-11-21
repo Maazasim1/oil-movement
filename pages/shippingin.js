@@ -3,7 +3,7 @@ import { useSession, getSession } from "next-auth/react"
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { getAlldataFromServer, postAllDatatoServer } from '../lib/shipping-in/utils'
+import { getAlldataFromServer, postAllDatatoServer,deleteDataShipin } from '../lib/shipping-in/utils'
 import Find from '../components/Find'
 export default function Shippingin() {
     const { data: session, status } = useSession()
@@ -14,6 +14,13 @@ export default function Shippingin() {
     const [asc, setAsc] = useState(true)
 
     const [showDiv, setShowDiv] = useState(false)
+    //delete data
+   async function deleteData(serialNumber){
+        console.log(serialNumber)
+        const data=await deleteDataShipin(serialNumber);
+        console.log(data);
+        setRefresh(!refresh)
+    }
 
     //Sort data
     const sortString = (dataArg, column) => {
@@ -309,6 +316,9 @@ export default function Shippingin() {
                                                 <th scope="col" className="py-3 px-6">
                                                     EDIT
                                                 </th>
+                                                <th scope="col" className="py-3 px-6">
+                                                    DELETE
+                                                </th>
 
                                             </tr>
                                         </thead>
@@ -344,6 +354,9 @@ export default function Shippingin() {
                                                     </td>
                                                     <td className="py-4 px-6">
                                                         <a href="#" className="font-medium text-blue-600  hover:underline">Edit</a>
+                                                    </td>
+                                                    <td className="py-4 px-6">
+                                                        <a href="#" className="font-medium text-blue-600  hover:underline" onClick={()=>deleteData(responses.serialNumber)}>DELETE</a>
                                                     </td>
                                                 </tr>
                                             ))}
