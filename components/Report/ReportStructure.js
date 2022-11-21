@@ -65,7 +65,7 @@ export default function ReportStructure() {
     <>
       <div className='flex justify-center '>
 
-        <nav className=' ml-[180PX] text-white bg-Orange rounded-lg p-5 my-10 w-[1250px] '>
+        <nav className='  text-white bg-Orange rounded-lg p-5 my-10 w-[1250px] '>
 
           <button name='overAll' className='px-4' onClick={() => handlerReports(event)}>Over All</button>
           <button name='bowswerSummary' className='px-4' onClick={() => handlerReports(event)}>Bowswer Summary</button>
@@ -80,7 +80,7 @@ export default function ReportStructure() {
 
         </nav>
       </div>
-      {overAll ? <OverAll /> : null}
+      {overAll ? <div className='ml-[20vw] m-10 mb-16'><OverAll /></div> : null}
 
 
     </>

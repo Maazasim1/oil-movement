@@ -55,7 +55,7 @@ export default function OverAll() {
     return (
 
         <>
-            <div className='ml-[25vw]'>
+            <div className='flex justify-center' id='reportComponent'>
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead>
                         <tr>

@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { getAlldataFromServer, postAllDatatoServer,deleteDataShipin } from '../lib/shipping-in/utils'
 import Find from '../components/Find'
-export default function Shippingin(props) {
+export default function ShippinginAdmin(props) {
     const { data: session, status } = useSession()
     console.log("session", session);
 
@@ -120,13 +120,13 @@ export default function Shippingin(props) {
     }
 
 
-    if (status === "authenticated" && session.user.name === ("maaz")) {
+    if (status === "authenticated" && session.user.name === "Admin") {
 
 
         return (
             <div>
-                <Sidebar level="Shipping In" shift="SHIFT: A" hidden="none" />
-                <Navbar />
+                
+                
                 {
                     showDiv
                         ? (

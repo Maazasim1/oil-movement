@@ -7,6 +7,7 @@ import Modal from './Modal';
 import ModalChange from './ModalChange';
 import ModalNew from './ModalNew';
 import HTMLtoReport from './Report/HTMLtoReport';
+import ShippingModal from './shippinginmodal';
 
 
 export default function Sidebar(props) {
@@ -20,27 +21,33 @@ export default function Sidebar(props) {
 
 
             </div>
-            <Link href='/'>
-                <a className='text-white  block p-4 text-center  m-4 bg-Orange hover:text-slate-400 rounded-xl'>{props.level}</a>
-            </Link>
+            <div className='flex flex-col justify-center items-center w-full'>
 
-            <Link href='/'>
-                <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{ display: props.hidden }}>{props.shift}</a>
-            </Link>
-        <div className='block p-4 m-4 text-center'>
+                <Link href={"/" + props.level}>
+                    <a className='text-white  block p-4 text-center w-[80%]  m-4 bg-Orange hover:text-slate-400 rounded-xl'>{props.level}</a>
+                </Link>
 
-           <ModalNew  stlye={{display: props.hidden}} title="New User" hidden={props.hidden} header="New User"/>
-        </div>
-        <div className='block p-4 m-4 text-center'>
+                <Link href='/'>
+                    <a className='text-buttonWhite p-4 text-center m-4 rounded-xl hover:text-slate-400' style={{ display: props.hidden }}>{props.shift}</a>
+                </Link>
+                <div className=' text-center'>
+                    <ModalNew stlye={{ display: props.hidden }} title="New User" hidden={props.hidden} header="New User" />
+                </div>
+                <div className=' text-center'>
 
-           <ModalChange  stlye={{display: props.hidden}} title="Change Credentials" hidden={props.hidden} header="Change Credentials"/>
-        </div>
-        <div className='block p-4 m-4 text-center'>
+                    <ModalChange stlye={{ display: props.hidden }} title="Change Credentials" hidden={props.hidden} header="Change Credentials" />
+                </div>
+                <div className='text-center'>
 
-           {/* <HTMLtoReport  stlye={{display: props.hidden}} hidden={props.hidden} title="Generate Report"/> */}
-        </div>
-  
-           
+                    <HTMLtoReport stlye={{ display: props.hidden }} hidden={props.hidden} title="Generate Report" />
+                </div>
+                <div className='text-center'>
+
+                    <ShippingModal />
+                </div>
+
+            </div>
+
 
 
 

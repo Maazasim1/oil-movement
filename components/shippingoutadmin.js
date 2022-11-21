@@ -20,7 +20,7 @@ const initialState = {
   timIn: true,
   tareWeight: true,
 };
-export default function ShippingOut() {
+export default function ShippingOutAdmin() {
   const { data: session, status } = useSession();
   console.log("session", session);
 
@@ -1062,7 +1062,21 @@ export default function ShippingOut() {
                           <img className="h-4" src="images/sort-up-solid.svg" />
                         )}
                       </th>
-                  
+                      <th
+                        onClick={() => handleSort("number", "mtons60")}
+                        scope="col"
+                        className="py-3 px-6"
+                      >
+                        Edit
+                        {ascArrow.mtons60 ? (
+                          <img
+                            className="h-4"
+                            src="images/sort-down-solid.svg"
+                          />
+                        ) : (
+                          <img className="h-4" src="images/sort-up-solid.svg" />
+                        )}
+                      </th>
 
 
 
@@ -1104,6 +1118,15 @@ export default function ShippingOut() {
                         <td className="py-4 px-6">{responses.inToOutDuration}</td>
                         <td className="py-4 px-6">{responses.remarks}</td>
                         <td className="py-4 px-6">{responses.sourcePlant}</td>
+
+                        <td className="py-4 px-6">
+                          <a
+                            href="#"
+                            className="font-medium text-blue-600  hover:underline"
+                          >
+                            Edit
+                          </a>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
