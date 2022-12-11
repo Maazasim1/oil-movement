@@ -1,7 +1,22 @@
-import React from 'react'
+import React,{useRef} from 'react'
+import { changeCredentials } from '../lib/shipping-in/utils';
 
 export default function ModalChange(props) {
     const [showModal, setShowModal] = React.useState(false);
+    const userName=useRef()
+    const password=useRef()
+
+    async function handleSubmit(e){
+        e.preventDefault();
+        const payload={
+            userName:userName.current.value,
+            password:password.current.value
+        }
+
+        const result=await changeCredentials(payload);
+        console.log(result)
+    }
+
     return (
         <>
             <button style={{display:props.hidden}}
@@ -35,31 +50,22 @@ export default function ModalChange(props) {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    <form  className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                                    <form  className="bg-white rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                                         <div  className="mb-4">
-                                            <label  className="block text-gray-700 text-sm font-bold mb-2" htmFor="number">
+                                            <label  className="block text-gray-700 text-sm font-bold mb-2">
                                                 Current Username
                                             </label>
-                                            <input  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number" type="text" placeholder="T/L Number" />
+                                            <input ref={userName} className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number" type="text" placeholder="" />
                                         </div>
-                                        <div  className="mb-6">
-                                            <label  className="block text-gray-700 text-sm font-bold mb-2" htmlFor="remarks">
-                                                New Username
-                                            </label>
-                                            <input  className="appearance-none border border-Orange rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="remarks" placeholder="Leave blank if not required" />
                                         
-                                        </div>
                                         <div  className="mb-6">
-                                            <label  className="block text-gray-700 text-sm font-bold mb-2" htmlFor="remarks">
+                                            <label  className="block text-gray-700 text-sm font-bold mb-2">
                                                 New Password
                                             </label>
-                                            <input  className="appearance-none border border-Orange rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="remarks" placeholder="Leave blank if not required" />
+                                            <input ref={password} type="password" className="appearance-none border border-Orange rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="remarks"/>
                                         
                                         </div>
                                     
-                                    </form>
-                                </div>
-                                {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-lastGray rounded-b">
                                     <button
                                         className="text-loginPage background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -70,12 +76,15 @@ export default function ModalChange(props) {
                                     </button>
                                     <button
                                         className="bg-Orange text-white active:bg-Orange font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={() => setShowModal(false)}
+                                        type="submit"
+                                        
                                     >
                                         Submit
                                     </button>
                                 </div>
+                                    </form>
+                                </div>
+                                {/*footer*/}
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,25 @@
 import NextAuth from "next-auth/next";
 import CredentialProvider from "next-auth/providers/credentials";
+import executeQuery from '../../../lib/shipping-in/loginDB/db'
+import { getPass } from "../../../lib/shipping-in/utils";
+var data
+
+export const validate = async (username) => {
+    
+    try {
+        const data = await executeQuery(
+            `SELECT * FROM credentials WHERE username = "${username}"`
+            
+        );
+        console.log(data);
+       
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
+
 
 export default NextAuth({
     providers:[
@@ -10,32 +30,50 @@ export default NextAuth({
                 username:{label:"User",type:"text",placeholder:"name"},
                 password:{label:"password",type:"password"},
             },
-            authorize: (credentials)=>{
+             async authorize(credentials,req){
                 //database look up
-                if(credentials.username==="maaz"&&credentials.password==="testing"&&credentials.level==="Shipping In") {
-                    return{
-                        id:2,
-                        name:"maaz",
+                //const dbUser=await validate(credentials.username)
+                // if(dbUser.length<1)
+                // {
                     
-                    };
+                // }
+                // else{
+                //     console.log("user not found")
+                //}
+               
+
+                const result=await validate(credentials.username)
+                console.log(result[0].userName)
                 
-                }
-                if(credentials.username==="admin"&&credentials.password==="testing"&&credentials.level==="Admin") {
-                    return{
-                        id:3,
-                        name:"Admin",
+                
+                
+
                     
-                    };
-                    
-                }
-                if(credentials.username==="maaz"&&credentials.password==="testing"&&credentials.level==="Shipping Out") {
-                    return{
-                        id:3,
-                        name:"maaz",
+                    if(credentials.username===result[0].userName&&credentials.password===result[0].password&&credentials.level===result[0].access) {
+                        return{
+                            id:2,
+                            name:"Admin"
+                            
+                        };
+                        
                     }
-                };
-                //login failed
-                return null;
+                    // if(credentials.username==="admin"&&credentials.password==="testing"&&credentials.level==="Admin") {
+                    //     return{
+                    //         id:3,
+                    //         name:"Admin",
+                            
+                    //     };
+                        
+                    // }
+                    // if(credentials.username==="maaz"&&credentials.password==="testing"&&credentials.level==="Shipping Out") {
+                    //     return{
+                    //         id:3,
+                    //         name:"maaz",
+                    //     }
+                    // };
+                    //login failed
+                    return null;
+
             }
         })
     ],
