@@ -159,7 +159,7 @@ export default function ShippingOut() {
     return <p>Access Denied</p>;
   }
 
-  if (status === "authenticated" && session.user.name === "maaz") {
+  if (status === "authenticated" && session.user.name === "Admin") {
     return (
       <div>
         <Sidebar level="Shipping Out" shift="SHIFT: A" hidden="none" />

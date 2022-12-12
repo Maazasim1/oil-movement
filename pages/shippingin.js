@@ -120,7 +120,7 @@ export default function Shippingin(props) {
     }
 
 
-    if (status === "authenticated" && session.user.name === ("maaz")) {
+    if (status === "authenticated" && session.user.name === "Admin") {
 
 
         return (

@@ -51,7 +51,7 @@ export default NextAuth({
                     
                     if(credentials.username===result[0].userName&&credentials.password===result[0].password&&credentials.level===result[0].access) {
                         return{
-                            id:2,
+                            id:3,
                             name:"Admin"
                             
                         };
