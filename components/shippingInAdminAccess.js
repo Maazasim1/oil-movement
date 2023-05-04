@@ -97,6 +97,7 @@ export default function ShippinginAdmin(props) {
     function handleSubmit(event) {
         event.preventDefault();
         const payLoad = {
+            serialNumber:update?.serialNumber,
             tlnum: tlInputRef.current.value,
             products: productsInputRef.current.value,
             token: tokenInputRef.current.value,
