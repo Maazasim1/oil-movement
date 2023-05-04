@@ -96,9 +96,27 @@ export default function ShippinginAdmin(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const payLoad = {
+
+        const updatePayload={
             serialNumber:update?.serialNumber,
             TLNumber: tlInputRef.current.value,
+            productCode: productsInputRef.current.value,
+            tokenNumber: tokenInputRef.current.value,
+            quantity: quantityInputRef.current.value,
+            shift: "A",
+            customer: customerInputRef.current.value,
+            transferType: transferTypeInputRef.current.value,
+            dateIn: dateInInputRef.current.value,
+            timeIn: `"${timeInInputRef.current.value}"`,
+            tareWeight: tareWeightInputRef.current.value,
+            //source:sourceInputRef.current.value,
+            remarks: `"${remarksInputRef.current.value}"`
+
+
+        }
+
+        const payLoad = {
+            tlnum: tlInputRef.current.value,
             products: productsInputRef.current.value,
             token: tokenInputRef.current.value,
             quantity: quantityInputRef.current.value,
@@ -130,7 +148,7 @@ export default function ShippinginAdmin(props) {
         if(myForm.current.buttonId==="update")
         {
             console.log("inside update")
-            updateData(payLoad).then(()=>console.log("data updated successfully"))
+            updateData(updatePayload).then(()=>console.log("data updated successfully"))
             setUpdateOrSubmit(false)
             const emptyObject=emptyState()
             console.log(emptyObject)
