@@ -15,7 +15,7 @@ export default function Find(props) {
   const searchData = (e) => {
     console.log(props.data[0].TLNumber)
     e.preventDefault()
-    setShowResults(tFmrue);
+    setShowResults(true);
 
     console.log(searchRef.current.value)
     
