@@ -37,7 +37,7 @@ export default function Sidebar(props) {
 
                     <HTMLtoReport stlye={{ display: props.hidden }} hidden={props.hidden} title="Generate Report" />
                 </div>
-                <div className='text-center'>
+                <div className='text-center' style={{display:props.hidden}}>
 
                     <ShippingModal />
                 </div>
